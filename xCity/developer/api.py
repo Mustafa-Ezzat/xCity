@@ -1,28 +1,29 @@
-from ninja import Router
+from ninja import Router, File, UploadedFile, Form
 from .models import Developer
-from .schemas import DeveloperSchema
+from .schemas import DeveloperSchemaIn, DeveloperSchemaOut
 
 router = Router()
 
 @router.get("/")
 def list(request):
     developers = Developer.objects.all() 
-    return [DeveloperSchema.from_orm(d) for d in developers]
+    return [DeveloperSchemaOut.from_orm(d) for d in developers]
 
 @router.post("/create")
-def create(request, payload: DeveloperSchema):
-    obj = Developer()
+def create(request, payload: Form[DeveloperSchemaIn], file: File[UploadedFile]):
+    obj = Developer.objects.create(file)
     for key, val in payload.dict(exclude_unset=True).items():
         setattr(obj, key, val)
     obj.save()
-    return {"message": "The developer created successfully."}
+    return {"message": f"The developer created successfully."}
 
-@router.patch("/update/{id}", response={200: dict, 403: dict})
-def update(request, id: int, payload: DeveloperSchema):
+@router.post("/update", response={200: dict, 403: dict})
+def update(request, id: Form[int], payload: Form[DeveloperSchemaIn], file: File[UploadedFile]):
     try:
         obj = Developer.objects.get(id = id)
         for key, val in payload.dict(exclude_unset=True).items():
             setattr(obj, key, val)
+        obj.img_url = file
         obj.save()
         return {"message": "The developer updated successfully."}
     except Developer.DoesNotExist:
