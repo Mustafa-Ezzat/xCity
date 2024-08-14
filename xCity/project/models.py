@@ -8,4 +8,4 @@ class Project(models.Model):
     developer = models.ForeignKey(Developer, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.id}: {self.username} by {self.developer}"
+        return f"{self.name} develop by {self.developer}"
