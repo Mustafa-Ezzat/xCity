@@ -7,4 +7,4 @@ class Developer(models.Model):
     img_url = models.ImageField(blank=True, null=True, upload_to="images/")
 
     def __str__(self):
-        return f"{self.id}: {self.username}"
+        return f"{self.id}: {self.name}"

@@ -11,9 +11,10 @@ def list(request):
 
 @router.post("/create")
 def create(request, payload: Form[DeveloperSchemaIn], file: File[UploadedFile]):
-    obj = Developer.objects.create(file)
+    obj = Developer()
     for key, val in payload.dict(exclude_unset=True).items():
         setattr(obj, key, val)
+    obj.img_url = file
     obj.save()
     return {"message": f"The developer created successfully."}
 
