@@ -1,0 +1,15 @@
+annotated-types==0.7.0
+asgiref==3.8.1
+certifi==2024.12.14
+contextlib2==21.6.0
+Django==5.0.6
+django-ninja==1.2.2
+django-ninja-extra==0.21.3
+djangorestframework==3.15.2
+injector==0.22.0
+pillow==10.4.0
+pydantic==2.8.0
+pydantic_core==2.20.0
+PyJWT==2.9.0
+sqlparse==0.5.0
+typing_extensions==4.12.2
