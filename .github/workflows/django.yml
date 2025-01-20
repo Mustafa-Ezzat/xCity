@@ -31,6 +31,12 @@ jobs:
     - name: Migrate
       run: |
         python manage.py migrate
+    - name: Test super admin
+      run: |
+        DJANGO_SUPERUSER_USERNAME=admin \
+        DJANGO_SUPERUSER_PASSWORD=admin \
+        DJANGO_SUPERUSER_EMAIL="admin@xciy.com" \
+        python manage.py createsuperuser --noinput
     - name: Run Server
       run: |
         python manage.py runserver 0.0.0.0:8000
