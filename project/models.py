@@ -10,4 +10,4 @@ class Project(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.name} develop by {self.developer}"
+        return f"{self.name} develop by {self.developer} in {self.place}"
