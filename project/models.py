@@ -6,6 +6,11 @@ from places.models import Place
 
 class Project(models.Model):
     name = models.CharField(max_length=64)
+    starting_price = models.IntegerField()
+    delivery = models.IntegerField()
+    payment_plan = models.IntegerField()
+    reward = models.IntegerField()
+    img_url = models.ImageField(blank=True, null=True, upload_to="images/")
     developer = models.ForeignKey(Developer, on_delete=models.CASCADE)
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
 

@@ -18,6 +18,11 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=64)),
+                ('starting_price', models.IntegerField()),
+                ('delivery', models.IntegerField()),
+                ('payment_plan', models.IntegerField()),
+                ('reward', models.IntegerField()),
+                ('img_url', models.ImageField(blank=True, null=True, upload_to='images/')),
                 ('developer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='developer.developer')),
                 ('place', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='places.place')),
             ],
