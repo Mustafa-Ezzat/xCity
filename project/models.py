@@ -10,7 +10,7 @@ class Project(models.Model):
     delivery = models.IntegerField()
     payment_plan = models.IntegerField()
     reward = models.IntegerField()
-    img_url = models.ImageField(blank=True, null=True, upload_to="images/")
+    img_url = models.ImageField(blank=True, null=True)
     developer = models.ForeignKey(Developer, on_delete=models.CASCADE)
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
 
